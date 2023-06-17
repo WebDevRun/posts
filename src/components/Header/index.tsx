@@ -24,9 +24,6 @@ export const Header: FC = () => {
             <LinkContainer to="about-me">
               <Nav.Link>Обо мне</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="about-user">
-              <Nav.Link>Подробности о пользователе</Nav.Link>
-            </LinkContainer>
           </Nav>
           <Navbar.Text>
             <Image
