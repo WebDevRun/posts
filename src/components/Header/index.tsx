@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Image from 'react-bootstrap/Image'
 import { LinkContainer } from 'react-router-bootstrap'
 
-import avatar from '/public/avatar.svg'
+import avatar from '/avatar.svg'
 
 export const Header: FC = () => {
   return (
