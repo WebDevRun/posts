@@ -1,15 +1,11 @@
-import { FC } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import Image from 'react-bootstrap/Image'
+import { Stack, Container, Nav, Navbar, Image } from 'react-bootstrap'
 
 import avatar from '/avatar.svg'
 
-export const Header: FC = () => {
+export const Header = () => {
   return (
-    <Navbar bg="light" expand="md">
+    <Navbar expand="md" sticky="top" bg="light gradient">
       <Container>
         <Navbar.Brand as={NavLink} to="/" className="h1 mb-0">
           Сайт с постами
@@ -24,7 +20,7 @@ export const Header: FC = () => {
               Обо мне
             </Nav.Link>
           </Nav>
-          <Navbar.Text className="d-flex gap-2 align-items-start align-items-md-center me-auto me-md-0">
+          <Stack gap={2} direction="horizontal">
             <Image
               src={avatar}
               alt="avatar"
@@ -32,13 +28,13 @@ export const Header: FC = () => {
               width={40}
               height={40}
             />
-            <div className="d-flex flex-column">
+            <Stack>
               <span>Карамашев Леонид</span>
               <Link to="#" className="nav-link">
                 someEmail@mail.some
               </Link>
-            </div>
-          </Navbar.Text>
+            </Stack>
+          </Stack>
         </Navbar.Collapse>
       </Container>
     </Navbar>

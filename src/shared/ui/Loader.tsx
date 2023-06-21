@@ -1,4 +1,4 @@
-import Spinner, { SpinnerProps } from 'react-bootstrap/Spinner'
+import { Spinner, SpinnerProps } from 'react-bootstrap'
 
 export type ILoader = Omit<SpinnerProps, 'animation'>
 
