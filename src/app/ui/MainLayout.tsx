@@ -1,9 +1,8 @@
-import { FC } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { Header } from '../../components/Header'
+import { Header } from '../../widgets'
 
-export const MainLayout: FC = () => {
+export const MainLayout = () => {
   return (
     <>
       <Header />

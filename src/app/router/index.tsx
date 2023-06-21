@@ -1,9 +1,19 @@
+import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { MainLayout } from '../../layouts/MainLayout'
-import { Main } from '../../pages/Main'
-import { AboutMe } from '../../pages/AboutMe'
-import { AboutUser } from '../../pages/AboutUser'
+import { MainLayout } from '../ui/MainLayout'
+import { withSuspense } from '../../shared'
+import { Loader } from '../../shared/ui/Loader'
+
+const MainPage = lazy(() =>
+  import('../../pages').then((module) => ({ default: module.Main }))
+)
+const AboutMePage = lazy(() =>
+  import('../../pages').then((module) => ({ default: module.AboutMe }))
+)
+const AboutUserPage = lazy(() =>
+  import('../../pages').then((module) => ({ default: module.AboutUser }))
+)
 
 export const appRouter = createBrowserRouter([
   {
@@ -11,15 +21,15 @@ export const appRouter = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Main />,
+        element: withSuspense(<MainPage />, <Loader />),
       },
       {
         path: 'about-me',
-        element: <AboutMe />,
+        element: withSuspense(<AboutMePage />, <Loader />),
       },
       {
         path: 'about-user',
-        element: <AboutUser />,
+        element: withSuspense(<AboutUserPage />, <Loader />),
       },
     ],
   },
