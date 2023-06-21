@@ -2,7 +2,10 @@ import { ThemeProvider } from 'react-bootstrap'
 import { RouterProvider } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import { appRouter } from '../router'
+
+import { appRouter } from '../../router'
+
+import './index.css'
 
 export const App = () => {
   return (
