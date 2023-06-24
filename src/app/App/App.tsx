@@ -3,9 +3,8 @@ import { RouterProvider } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
-import { appRouter } from '../../router'
-
-import './index.css'
+import './App.css'
+import { appRouter } from '../RouterProvider'
 
 export const App = () => {
   return (

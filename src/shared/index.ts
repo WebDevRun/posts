@@ -1,2 +1,3 @@
-export { Loader } from './ui/Loader'
-export { withSuspense } from './ui/withSuspense'
+export { Loader } from './Loader'
+export { FullPageWrapper } from './FullPageWrapper'
+export { SuspenseWrapper } from './SuspenseWrapper'
