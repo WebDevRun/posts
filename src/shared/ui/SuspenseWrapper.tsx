@@ -1,5 +1,6 @@
 import { ReactElement, Suspense } from 'react'
-import { FullPageWrapper, Loader } from './index'
+import { FullPageWrapper } from '..'
+import { Loader } from '..'
 
 interface ISuspenseWrapper {
   children: ReactElement

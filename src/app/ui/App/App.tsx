@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import './App.css'
-import { appRouter } from '../RouterProvider'
+import { appRouter } from '../../lib/RouterProvider'
 
 export const App = () => {
   return (

@@ -1,21 +1,21 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { MainLayout } from './MainLayout'
-import { SuspenseWrapper } from '../shared'
+import { MainLayout } from '../ui/MainLayout'
+import { SuspenseWrapper } from '../../shared'
 
 const MainPage = lazy(async () => {
-  const module = await import('../pages')
+  const module = await import('../../pages')
   return { default: module.Main }
 })
 
 const AboutMePage = lazy(async () => {
-  const module = await import('../pages')
+  const module = await import('../../pages')
   return { default: module.AboutMe }
 })
 
 const AboutUserPage = lazy(async () => {
-  const module = await import('../pages')
+  const module = await import('../../pages')
   return { default: module.AboutUser }
 })
 

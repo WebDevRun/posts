@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 
-import { fetcher } from '../lib/fetcher'
-import { Post } from '../models/Post'
+import { fetcher } from '../../lib/fetcher'
+import { Post } from '../../models/Post'
 
 export const Posts = () => {
   const {
