@@ -1,3 +1,5 @@
+import { Posts } from '../../widgets'
+
 export const Main = () => {
-  return <p>Main</p>
+  return <Posts />
 }
