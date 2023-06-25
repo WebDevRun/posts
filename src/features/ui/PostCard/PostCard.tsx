@@ -9,6 +9,12 @@ interface IPost {
   postId: number
 }
 
+const plasholderSizes = [
+  ['25', '50', '75'],
+  ['50', '50', '50'],
+  ['25', '50', '25'],
+]
+
 export const PostCard = ({ authorId, postId, text, title }: IPost) => {
   const { author, error, isLoading } = useAuthor(authorId)
 
@@ -18,21 +24,15 @@ export const PostCard = ({ authorId, postId, text, title }: IPost) => {
         <Card.Body className="d-flex flex-column justify-content-between">
           <Placeholder as={Card.Title} className="w-50" />
           <div className="d-flex gap-1 flex-column">
-            <div className="d-flex gap-1">
-              <Placeholder size="lg" className="w-25" />
-              <Placeholder size="lg" className="w-50" />
-              <Placeholder size="lg" className="w-75" />
-            </div>
-            <div className="d-flex gap-1">
-              <Placeholder size="lg" className="w-50" />
-              <Placeholder size="lg" className="w-50" />
-              <Placeholder size="lg" className="w-50" />
-            </div>
-            <div className="d-flex gap-1">
-              <Placeholder size="lg" className="w-25" />
-              <Placeholder size="lg" className="w-50" />
-              <Placeholder size="lg" className="w-25" />
-            </div>
+            {plasholderSizes.map((size, index) => {
+              return (
+                <div key={index} className="d-flex gap-1">
+                  <Placeholder size="lg" className={`w-${size[0]}`} />
+                  <Placeholder size="lg" className={`w-${size[1]}`} />
+                  <Placeholder size="lg" className={`w-${size[2]}`} />
+                </div>
+              )
+            })}
           </div>
         </Card.Body>
         <Card.Footer className="d-flex justify-content-between align-items-center">
