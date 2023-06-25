@@ -11,7 +11,7 @@ const fetchPsops = async (url: string) => {
 
 export const usePosts = () => {
   const { data, error, isLoading } = useSWR<Post[]>(
-    `${serverUrl}/posts`,
+    `${serverUrl}/posts?_page=1`,
     fetchPsops
   )
 
