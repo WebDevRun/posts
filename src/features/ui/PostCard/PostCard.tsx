@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { Button, Card, Placeholder } from 'react-bootstrap'
 
 import { useAuthor } from './useAuthor'
@@ -58,7 +59,9 @@ export const PostCard = ({ authorId, postId, text, title }: IPost) => {
         <Card.Text>{text}</Card.Text>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-between align-items-center">
-        <Card.Link href="#">{author.name}</Card.Link>
+        <Card.Link as={NavLink} to={`about-user/${authorId}`}>
+          {author.name}
+        </Card.Link>
         <Button onClick={clickHandler}>Показать комментарии</Button>
       </Card.Footer>
     </Card>

@@ -41,7 +41,7 @@ export const appRouter = createBrowserRouter([
         ),
       },
       {
-        path: 'about-user',
+        path: 'about-user/:id',
         element: (
           <SuspenseWrapper>
             <AboutUserPage />
