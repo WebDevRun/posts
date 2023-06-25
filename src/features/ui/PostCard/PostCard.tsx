@@ -1,10 +1,8 @@
 import { Button, Card, Col } from 'react-bootstrap'
-import useSWR from 'swr'
 
-import { fetcher } from '../../widgets/lib/fetcher'
-import { FullPageWrapper, Loader } from '../../shared'
+import { FullPageWrapper, Loader } from '../../../shared'
 
-import { Author } from '../models/Author'
+import { useAuthor } from './useAuthor'
 
 interface IPost {
   title: string
@@ -13,14 +11,8 @@ interface IPost {
   postId: number
 }
 
-const serverUrl = import.meta.env.VITE_SERVER_URL
-
 export const PostCard = ({ authorId, postId, text, title }: IPost) => {
-  const {
-    data: author,
-    error,
-    isLoading,
-  } = useSWR<Author>(`${serverUrl}/users/${authorId}`, fetcher)
+  const { author, error, isLoading } = useAuthor(authorId)
 
   if (error) return <p>Произошла ошибка</p>
 

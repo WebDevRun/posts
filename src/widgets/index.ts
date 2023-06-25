@@ -1,2 +1,2 @@
 export { Header } from './ui/Header'
-export { Posts } from './ui/Posts'
+export { Posts } from './ui/Posts/Posts'

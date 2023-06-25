@@ -1,20 +1,12 @@
 import { Container, Row } from 'react-bootstrap'
-import useSWR from 'swr'
 
-import { PostCard } from '../../features'
-import { FullPageWrapper, Loader } from '../../shared'
+import { PostCard } from '../../../features'
+import { FullPageWrapper, Loader } from '../../../shared'
 
-import { fetcher } from '../lib/fetcher'
-import { Post } from '../models/Post'
-
-const serverUrl = import.meta.env.VITE_SERVER_URL
+import { usePosts } from './usePosts'
 
 export const Posts = () => {
-  const {
-    data: posts,
-    error,
-    isLoading,
-  } = useSWR<Post[]>(`${serverUrl}/posts?_limit=20`, fetcher)
+  const { posts, error, isLoading } = usePosts()
 
   if (error) return <p>Произошла ошибка</p>
 
