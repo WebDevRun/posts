@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
-import { MainLayout } from '../ui/MainLayout'
+import { MainLayout } from './MainLayout'
 import { SuspenseWrapper } from '../../shared'
 
 const MainPage = lazy(async () => {
