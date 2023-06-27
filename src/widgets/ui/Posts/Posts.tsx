@@ -6,7 +6,7 @@ import { FullPageWrapper, Loader } from '../../../shared'
 import { usePosts } from './usePosts'
 
 export const Posts = () => {
-  const { posts, error, isLoading } = usePosts(1)
+  const { data, error, isLoading } = usePosts(1)
 
   if (isLoading)
     return (
@@ -17,12 +17,12 @@ export const Posts = () => {
 
   if (error) return <p>Произошла ошибка</p>
 
-  if (!posts) return <p>Нет данных</p>
+  if (!data?.posts) return <p>Нет данных</p>
 
   return (
     <Container>
       <Row md={2} xxs={1} className="g-4 mt-2 mb-2">
-        {posts.map((post) => (
+        {data.posts.map((post) => (
           <Col key={post.id} className="d-flex align-items-stretch">
             <PostCard
               postId={post.id}
