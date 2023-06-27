@@ -6,7 +6,7 @@ import { FullPageWrapper, Loader } from '../../../shared'
 import { usePosts } from './usePosts'
 
 export const Posts = () => {
-  const { posts, error, isLoading } = usePosts()
+  const { posts, error, isLoading } = usePosts(1)
 
   if (isLoading)
     return (

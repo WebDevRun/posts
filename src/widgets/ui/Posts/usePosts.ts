@@ -1,18 +1,14 @@
 import useSWR from 'swr'
 
+import { fetcher } from '../../../app/lib/fetcher'
 import { Post } from '../../models/Post'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL
 
-const fetchPsops = async (url: string) => {
-  const responce = await fetch(url)
-  return await responce.json()
-}
-
-export const usePosts = () => {
+export const usePosts = (page: number) => {
   const { data, error, isLoading } = useSWR<Post[]>(
-    `${serverUrl}/posts?_page=1`,
-    fetchPsops
+    `${serverUrl}/posts?_page=${page}`,
+    fetcher
   )
 
   return {
