@@ -1,22 +1,29 @@
 import useSWR from 'swr'
 
-import { Post } from '../../models/Post'
+import { IPost } from '../../models/Post'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL
 
 const fetchPsops = async (url: string) => {
   const responce = await fetch(url)
-  return await responce.json()
+  const posts: IPost[] = await responce.json()
+  const totalCount = responce.headers.get('X-Total-Count')
+  return { posts, totalCount }
+}
+
+interface IResponce {
+  posts: IPost[]
+  totalCount: string | null
 }
 
 export const usePosts = () => {
-  const { data, error, isLoading } = useSWR<Post[]>(
+  const { data, error, isLoading } = useSWR<IResponce>(
     `${serverUrl}/posts?_page=1`,
     fetchPsops
   )
 
   return {
-    posts: data,
+    data,
     error,
     isLoading,
   }

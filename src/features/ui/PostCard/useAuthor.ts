@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { Author } from '../../models/Author'
+import { IAuthor } from '../../models/Author'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -11,7 +11,7 @@ const getAuthor = async (url: string) => {
 }
 
 export const useAuthor = (authorId: number) => {
-  const { data, error, isLoading } = useSWR<Author>(
+  const { data, error, isLoading } = useSWR<IAuthor>(
     `${serverUrl}/users/${authorId}`,
     getAuthor
   )
