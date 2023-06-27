@@ -18,7 +18,7 @@ interface IResponce {
 
 export const usePosts = (page: number) => {
   const { data, error, isLoading } = useSWR<IResponce>(
-    `${serverUrl}/posts?_page${page}`,
+    `${serverUrl}/posts?_page=${page}`,
     fetchPsops
   )
 

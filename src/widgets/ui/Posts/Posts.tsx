@@ -1,12 +1,22 @@
+import { useMemo } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 
-import { PostCard } from '../../../features'
+import { PostCard, PostPagination } from '../../../features'
 import { FullPageWrapper, Loader } from '../../../shared'
 
 import { usePosts } from './usePosts'
 
 export const Posts = () => {
   const { data, error, isLoading } = usePosts(1)
+
+  const lastPage = useMemo(() => {
+    if (data === undefined) return 0
+
+    const { posts, totalCount } = data
+    const totalCountNumber = Number(totalCount)
+
+    return Math.floor(totalCountNumber / posts.length)
+  }, [data])
 
   if (isLoading)
     return (
@@ -33,6 +43,14 @@ export const Posts = () => {
           </Col>
         ))}
       </Row>
+
+      {lastPage >= 1 && (
+        <Row className="mt-4">
+          <Col className="d-flex justify-content-center">
+            <PostPagination lastPage={lastPage} />
+          </Col>
+        </Row>
+      )}
     </Container>
   )
 }
