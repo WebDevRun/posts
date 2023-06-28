@@ -22,24 +22,50 @@ export const PostPagination = ({ lastPage }: IPostPagination) => {
   }, [lastPage])
 
   const pageClickHandler: MouseEventHandler<HTMLElement> = (event) => {
-    // setCurrentPage(event.currentTarget.value)
+    const textContent = event.currentTarget.textContent
+
+    if (textContent) setCurrentPage(parseInt(textContent))
+  }
+
+  const firstPageClickHandler: MouseEventHandler<HTMLElement> = () => {
+    setCurrentPage(1)
+  }
+
+  const prevPageClickHandler: MouseEventHandler<HTMLElement> = () => {
+    if (currentPage <= 1) return
+
+    setCurrentPage((prev) => prev - 1)
+  }
+
+  const nextPageClickHandler: MouseEventHandler<HTMLElement> = () => {
+    if (currentPage >= lastPage) return
+
+    setCurrentPage((prev) => prev + 1)
+  }
+
+  const lastPageClickHandler: MouseEventHandler<HTMLElement> = () => {
+    setCurrentPage(lastPage)
   }
 
   return (
     <Pagination>
-      <Pagination.First />
-      <Pagination.Prev />
+      <Pagination.First onClick={firstPageClickHandler} />
+      <Pagination.Prev onClick={prevPageClickHandler} />
       {pages.map((page) => {
+        const queryPage = Number(searchParams.get('page'))
+
         return (
-          <Pagination.Item as="button" key={page} onClick={pageClickHandler}>
+          <Pagination.Item
+            key={page}
+            active={page === queryPage}
+            onClick={pageClickHandler}
+          >
             {page}
           </Pagination.Item>
         )
       })}
-      <Pagination.Next />
-      <Pagination.Last />
-      {/* <Pagination.Item active>{12}</Pagination.Item> */}
-      {/* <Pagination.Item disabled>{14}</Pagination.Item> */}
+      <Pagination.Next onClick={nextPageClickHandler} />
+      <Pagination.Last onClick={lastPageClickHandler} />
     </Pagination>
   )
 }
