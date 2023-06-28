@@ -16,9 +16,11 @@ interface IResponce {
   totalCount: string | null
 }
 
-export const usePosts = (page: number) => {
+export const usePosts = (page: number | (() => number)) => {
+  const pageValue = typeof page === 'function' ? page() : page
+
   const { data, error, isLoading } = useSWR<IResponce>(
-    `${serverUrl}/posts?_page=${page}`,
+    `${serverUrl}/posts?_page=${pageValue}`,
     fetchPsops
   )
 

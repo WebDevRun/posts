@@ -9,7 +9,10 @@ interface IPostPagination {
 export const PostPagination = ({ lastPage }: IPostPagination) => {
   const [pages, setPages] = useState<number[]>([])
   const [searchParams, setSearchParams] = useSearchParams()
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(() => {
+    const queryPage = searchParams.get('page')
+    return Number(queryPage) || 1
+  })
 
   useEffect(() => {
     searchParams.set('page', `${currentPage}`)

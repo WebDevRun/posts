@@ -5,9 +5,14 @@ import { PostCard, PostPagination } from '../../../features'
 import { FullPageWrapper, Loader } from '../../../shared'
 
 import { usePosts } from './usePosts'
+import { useSearchParams } from 'react-router-dom'
 
 export const Posts = () => {
-  const { data, error, isLoading } = usePosts(1)
+  const [searchParams] = useSearchParams()
+  const { data, error, isLoading } = usePosts(() => {
+    const queryPage = searchParams.get('page')
+    return Number(queryPage)
+  })
 
   const lastPage = useMemo(() => {
     if (data === undefined) return 0
