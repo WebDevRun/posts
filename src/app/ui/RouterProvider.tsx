@@ -1,8 +1,7 @@
-import { lazy } from 'react'
-import { createBrowserRouter } from 'react-router-dom'
+import { Suspense, lazy } from 'react'
+import { ScrollRestoration, createBrowserRouter } from 'react-router-dom'
 
 import { MainLayout } from './MainLayout'
-import { SuspenseWrapper } from '../../shared'
 
 const MainPage = lazy(async () => {
   const module = await import('../../pages')
@@ -22,30 +21,35 @@ const AboutUserPage = lazy(async () => {
 export const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: (
+      <>
+        <MainLayout />
+        <ScrollRestoration />
+      </>
+    ),
     children: [
       {
         index: true,
         element: (
-          <SuspenseWrapper>
+          <Suspense>
             <MainPage />
-          </SuspenseWrapper>
+          </Suspense>
         ),
       },
       {
         path: 'about-me',
         element: (
-          <SuspenseWrapper>
+          <Suspense>
             <AboutMePage />
-          </SuspenseWrapper>
+          </Suspense>
         ),
       },
       {
         path: 'about-user/:id',
         element: (
-          <SuspenseWrapper>
+          <Suspense>
             <AboutUserPage />
-          </SuspenseWrapper>
+          </Suspense>
         ),
       },
     ],

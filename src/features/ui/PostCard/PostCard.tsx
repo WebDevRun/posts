@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import { Button, Card, Placeholder } from 'react-bootstrap'
 
-import { useAuthor } from './useAuthor'
+import { useAuthor } from '../../lib/useAuthor'
 
 interface IPost {
   title: string

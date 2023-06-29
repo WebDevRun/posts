@@ -1,28 +1,31 @@
 import { useEffect, useState, MouseEventHandler } from 'react'
 import { Pagination } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
+import { usePosts } from '../../widgets/lib/usePosts'
 
-interface IPostPagination {
-  lastPage: number
-}
-
-export const PostPagination = ({ lastPage }: IPostPagination) => {
+export const PostPagination = () => {
   const [pages, setPages] = useState<number[]>([])
   const [searchParams, setSearchParams] = useSearchParams()
   const [currentPage, setCurrentPage] = useState(() => {
     const queryPage = searchParams.get('page')
+
     return Number(queryPage) || 1
   })
+  const { data } = usePosts(currentPage)
+
+  useEffect(() => {
+    if (data === undefined || data.totalCount === null) return
+
+    const pages = Math.floor(Number(data.totalCount) / data.posts.length)
+    const arr = Array.from(Array(pages))
+
+    setPages(arr.map((_, i) => i + 1))
+  }, [data])
 
   useEffect(() => {
     searchParams.set('page', `${currentPage}`)
     setSearchParams(searchParams)
   }, [currentPage])
-
-  useEffect(() => {
-    const arr = Array.from(Array(10))
-    setPages(arr.map((_, i) => i + 1))
-  }, [lastPage])
 
   const pageClickHandler: MouseEventHandler<HTMLElement> = (event) => {
     const textContent = event.currentTarget.textContent
@@ -41,13 +44,13 @@ export const PostPagination = ({ lastPage }: IPostPagination) => {
   }
 
   const nextPageClickHandler: MouseEventHandler<HTMLElement> = () => {
-    if (currentPage >= lastPage) return
+    if (currentPage >= pages.length) return
 
     setCurrentPage((prev) => prev + 1)
   }
 
   const lastPageClickHandler: MouseEventHandler<HTMLElement> = () => {
-    setCurrentPage(lastPage)
+    setCurrentPage(pages.length)
   }
 
   return (

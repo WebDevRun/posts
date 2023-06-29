@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { IPost } from '../../models/Post'
+import { IPost } from '../models/Post'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL
 

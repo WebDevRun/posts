@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-import { IAuthor } from '../../models/Author'
+import { IAuthor } from '../models/Author'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL
 

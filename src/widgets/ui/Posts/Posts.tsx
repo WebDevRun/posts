@@ -1,11 +1,8 @@
-import { useMemo } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
+import { useSearchParams } from 'react-router-dom'
 
 import { PostCard, PostPagination } from '../../../features'
-import { FullPageWrapper, Loader } from '../../../shared'
-
-import { usePosts } from './usePosts'
-import { useSearchParams } from 'react-router-dom'
+import { usePosts } from '../../lib/usePosts'
 
 export const Posts = () => {
   const [searchParams] = useSearchParams()
@@ -14,28 +11,26 @@ export const Posts = () => {
     return Number(queryPage)
   })
 
-  const lastPage = useMemo(() => {
-    if (data === undefined) return 0
+  if (isLoading) return null
 
-    const { posts, totalCount } = data
-    const totalCountNumber = Number(totalCount)
-
-    return Math.floor(totalCountNumber / posts.length)
-  }, [data])
-
-  if (isLoading)
+  if (error) {
     return (
-      <FullPageWrapper>
-        <Loader />
-      </FullPageWrapper>
+      <Row md={2} xxs={1} className="g-4 mt-2 mb-2">
+        <p>Произошла ошибка</p>
+      </Row>
     )
+  }
 
-  if (error) return <p>Произошла ошибка</p>
-
-  if (!data?.posts) return <p>Нет данных</p>
+  if (data === undefined) {
+    return (
+      <Row md={2} xxs={1} className="g-4 mt-2 mb-2">
+        <p>Нет данных</p>
+      </Row>
+    )
+  }
 
   return (
-    <Container>
+    <>
       <Row md={2} xxs={1} className="g-4 mt-2 mb-2">
         {data.posts.map((post) => (
           <Col key={post.id} className="d-flex align-items-stretch">
@@ -49,13 +44,13 @@ export const Posts = () => {
         ))}
       </Row>
 
-      {lastPage >= 1 && (
+      {Number(data.totalCount) / data.posts.length && (
         <Row className="mt-4">
           <Col className="d-flex justify-content-center">
-            <PostPagination lastPage={lastPage} />
+            <PostPagination />
           </Col>
         </Row>
       )}
-    </Container>
+    </>
   )
 }

@@ -1,5 +1,10 @@
+import { Container } from 'react-bootstrap'
 import { Posts } from '../../widgets'
 
 export const Main = () => {
-  return <Posts />
+  return (
+    <Container>
+      <Posts />
+    </Container>
+  )
 }
