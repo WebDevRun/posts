@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Stack, Container, Nav, Navbar, Image } from 'react-bootstrap'
 
 import avatar from '/avatar.svg'
@@ -30,9 +30,9 @@ export const Header = () => {
             />
             <Stack>
               <span>Карамашев Леонид</span>
-              <Link to="#" className="nav-link">
+              <a href="#" className="nav-link">
                 someEmail@mail.some
-              </Link>
+              </a>
             </Stack>
           </Stack>
         </Navbar.Collapse>
