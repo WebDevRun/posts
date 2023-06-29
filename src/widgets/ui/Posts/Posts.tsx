@@ -1,7 +1,8 @@
 import { Col, Row } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 
-import { PostCard, PostPagination } from '../../../features'
+import { PostCard } from '../../../entities'
+import { PostPagination } from '../../../features'
 import { usePosts } from '../../lib/usePosts'
 
 export const Posts = () => {

@@ -21,12 +21,7 @@ const AboutUserPage = lazy(async () => {
 export const appRouter = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <>
-        <MainLayout />
-        <ScrollRestoration />
-      </>
-    ),
+    element: <MainLayout />,
     children: [
       {
         index: true,
