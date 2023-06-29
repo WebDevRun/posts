@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Stack, Container, Nav, Navbar, Image } from 'react-bootstrap'
 
 import avatar from '/avatar.svg'
@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <Navbar expand="md" sticky="top" bg="light gradient">
       <Container>
-        <Navbar.Brand as={NavLink} to="/" className="h1 mb-0">
+        <Navbar.Brand as={Link} to="/" className="h1 mb-0">
           Сайт с постами
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
