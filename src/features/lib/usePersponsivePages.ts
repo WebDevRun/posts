@@ -20,36 +20,25 @@ const getMiddleParts = (
 
 export const useResponsivePages = (pages: number[], currentPage: number) => {
   return useMemo(() => {
-    let result: (typeof ellipsis | number)[]
-
     const firstElements = pages.slice(0, 3)
-    const lastElement = pages.at(-1)
 
-    if (lastElement !== undefined && currentPage < startShift) {
-      result = [...firstElements, ellipsis, lastElement]
-      return result
+    if (currentPage < startShift) {
+      return [...firstElements, ellipsis]
     }
 
     const endShift = pages.at(-3)
-    const firstElement = pages[0]
     const lastElements = pages.slice(-3)
 
     if (endShift !== undefined && currentPage > endShift) {
-      result = [firstElement, ellipsis, ...lastElements]
-      return result
+      return [ellipsis, ...lastElements]
     }
 
-    if (endShift !== undefined && lastElement !== undefined) {
+    if (endShift !== undefined) {
       const middlePartValues = getMiddleParts(currentPage, startShift, endShift)
 
-      result = [
-        firstElement,
-        ellipsis,
-        ...middlePartValues,
-        ellipsis,
-        lastElement,
-      ]
-      return result
+      return [ellipsis, ...middlePartValues, ellipsis]
     }
+
+    return pages
   }, [pages, currentPage])
 }

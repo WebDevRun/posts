@@ -29,8 +29,6 @@ export const PostPagination = () => {
     setSearchParams(searchParams)
   }, [currentPage])
 
-  if (responsivePages === undefined) return null
-
   const pageClickHandler: MouseEventHandler<HTMLElement> = (event) => {
     const textContent = event.currentTarget.textContent
 
