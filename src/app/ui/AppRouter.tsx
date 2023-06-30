@@ -18,7 +18,7 @@ const AboutUserPage = lazy(async () => {
   return { default: module.AboutUser }
 })
 
-export const appRouter = createBrowserRouter([
+export const AppRouter = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,

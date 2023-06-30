@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
 
 import './App.css'
-import { appRouter } from '../RouterProvider'
+import { AppRouter } from '../AppRouter'
 
 export const App = () => {
   return (
@@ -12,7 +12,7 @@ export const App = () => {
       breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
       minBreakpoint="xxs"
     >
-      <RouterProvider router={appRouter} />
+      <RouterProvider router={AppRouter} />
     </ThemeProvider>
   )
 }
