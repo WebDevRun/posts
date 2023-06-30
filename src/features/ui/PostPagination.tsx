@@ -2,6 +2,7 @@ import { useEffect, useState, MouseEventHandler } from 'react'
 import { Pagination } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 import { usePosts } from '../../widgets/lib/usePosts'
+import { useResponsivePages } from '../lib/usePersponsivePages'
 
 export const PostPagination = () => {
   const [pages, setPages] = useState<number[]>([])
@@ -12,6 +13,7 @@ export const PostPagination = () => {
     return Number(queryPage) || 1
   })
   const { data } = usePosts(currentPage)
+  const responsivePages = useResponsivePages(pages, currentPage)
 
   useEffect(() => {
     if (data === undefined || data.totalCount === null) return
@@ -26,6 +28,8 @@ export const PostPagination = () => {
     searchParams.set('page', `${currentPage}`)
     setSearchParams(searchParams)
   }, [currentPage])
+
+  if (responsivePages === undefined) return null
 
   const pageClickHandler: MouseEventHandler<HTMLElement> = (event) => {
     const textContent = event.currentTarget.textContent
@@ -57,15 +61,16 @@ export const PostPagination = () => {
     <Pagination>
       <Pagination.First onClick={firstPageClickHandler} />
       <Pagination.Prev onClick={prevPageClickHandler} />
-      {pages.map((page) => {
-        const queryPage = Number(searchParams.get('page'))
+      {responsivePages.map((page, index) => {
+        if (page === 'ellipsis') {
+          return <Pagination.Ellipsis key={index} disabled />
+        }
 
         return (
           <Pagination.Item
-            key={page}
-            active={page === queryPage}
+            key={index}
+            active={page === currentPage}
             onClick={pageClickHandler}
-            className={page > 5 ? 'd-none d-sm-block' : undefined}
           >
             {page}
           </Pagination.Item>
