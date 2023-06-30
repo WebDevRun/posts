@@ -65,6 +65,7 @@ export const PostPagination = () => {
             key={page}
             active={page === queryPage}
             onClick={pageClickHandler}
+            className={page > 5 ? 'd-none d-sm-block' : undefined}
           >
             {page}
           </Pagination.Item>
