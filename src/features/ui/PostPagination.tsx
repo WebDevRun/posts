@@ -2,7 +2,7 @@ import { useEffect, useState, MouseEventHandler } from 'react'
 import { Pagination } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 import { usePosts } from '../lib/usePosts'
-import { useResponsivePages } from '../lib/usePersponsivePages'
+import { useResponsivePages } from '../lib/useResponsivePages'
 
 export const PostPagination = () => {
   const [pages, setPages] = useState<number[]>([])
